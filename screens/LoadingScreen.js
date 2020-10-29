@@ -7,7 +7,6 @@ export default function LoadingScreen({ navigation }) {
      () => {
       firebase.auth().onAuthStateChanged((user) => {
         if (user) {
-          console.log('user id from Loading Screen', user.uid);
           navigation.navigate('Dashboard');
         } else {
           navigation.navigate('Home');
@@ -23,4 +22,12 @@ export default function LoadingScreen({ navigation }) {
   );
 }
 
-const styles = StyleSheet.create({});
+const styles = StyleSheet.create({
+  container: {
+    height: '100%',
+    width: '100%',
+    backgroundColor: '#3FC5AB',
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+});

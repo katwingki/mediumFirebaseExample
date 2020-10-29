@@ -4,57 +4,42 @@ import { TouchableOpacity } from 'react-native-gesture-handler';
 import * as firebase from 'firebase';
 import {loggingOut} from "../API/firebaseMethods";
 
-//import 'firebase/firestore';
-// import {
-//   useCollection,
-//   useDocument,
-//   useDocumentOnce,
-// } from 'react-firebase-hooks/firestore';
-
-// const db = firebase.firestore();
-
 export default function Dashboard({ navigation }) {
   let currentUserUID = firebase.auth().currentUser.uid;
+  const [firstName, setFirstName] = useState('');
 
-  // const [value, loading, error] = useDocument(
-  //   firebase.firestore().collection('users').doc(currentUserUID)
-  // );
+  useEffect(()=>{
+    async function getUserInfo(){
+      let doc = await firebase
+      .firestore()
+      .collection("users")
+      .doc(currentUserUID)
+      .get();
 
-  // async function loggingOut() {
-  //   await firebase.auth().signOut();
-  //   navigation.navigate('Home');
-  //}
+      if(!doc.exists){
+        Alert.alert("No user data found!")
+      }else{
+        let dataObj = doc.data();
+        setFirstName(dataObj.firstName)
+      }
+    }
+    getUserInfo();
+  })
+
   const handlePress = () => {
-     console.log(currentUserUID)
     loggingOut();
     navigation.navigate('Home');
   };
+
 return (
-  <View>
-    <Text>Dashboard</Text>
+  <View style={styles.container}>
+    <Text style={styles.titleText}>Dashboard</Text>
+<Text style={styles.text}>Hi {firstName}</Text>
     <TouchableOpacity style={styles.button} onPress={handlePress}>
       <Text style={styles.buttonText}>Log Out</Text>
    </TouchableOpacity>
     </View>
 )
-  // if (error) {
-  //   return <View>{error}</View>;
-  // } else if (loading) {
-  //   return <ActivityIndicator size='large' />;
-  // } else if (value && value.data()) {
-  //   return (
-  //     <View style={styles.container}>
-  //       <Text>
-  //         Hello
-  //         {value && value.data() ? ` ${value.data().firstName}!` : null} You are
-  //         currently logged in.
-  //       </Text>
-  //       <TouchableOpacity style={styles.button} onPress={handlePress}>
-  //         <Text style={styles.buttonText}>Log Out</Text>
-  //       </TouchableOpacity>
-  //     </View>
-  //   );
-  // }
 }
 
 const styles = StyleSheet.create({
@@ -75,8 +60,22 @@ const styles = StyleSheet.create({
     padding: 5,
     backgroundColor: '#ff9999',
     borderWidth: 2,
-    borderColor: '#ffcccc',
+    borderColor: 'white',
     borderRadius: 15,
     alignSelf: 'center',
   },
+  titleText: {
+    textAlign: 'center',
+    fontSize: 25,
+    fontWeight: 'bold',
+    color: '#2E6194',
+  },
+  text: {
+    textAlign: 'center',
+    fontSize: 18,
+    marginTop:"2%",
+    marginBottom: "10%",
+    fontWeight: 'bold',
+    color: 'black',
+  }
 });

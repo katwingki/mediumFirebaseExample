@@ -8,15 +8,6 @@ export default function SignIn({ navigation }) {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
-  // async function signIn(email, password) {
-  //   try {
-  //     await firebase.auth().signInWithEmailAndPassword(email, password);
-  //     navigation.navigate('Dashboard');
-  //   } catch (err) {
-  //     Alert.alert('There is something wrong!', err.message);
-  //   }
-  //}
-
   const handlePress = () => {
     if (!email) {
       Alert.alert('Email field is required.');
@@ -33,7 +24,7 @@ export default function SignIn({ navigation }) {
 
   return (
     <View style={styles.container}>
-      <Text style={styles.text}>Enter your email and password to sign in:</Text>
+      <Text style={styles.text}>Sign in to your account:</Text>
 
       <TextInput
         style={styles.formInput}

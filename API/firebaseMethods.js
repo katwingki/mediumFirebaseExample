@@ -15,10 +15,8 @@ export async function registration(email, password, lastName, firstName) {
         lastName: lastName,
         firstName: firstName,
       });
-
-    return currentUser.uid;
   } catch (err) {
-    Alert.alert("There is something wrong!!!!", err.message);
+    Alert.alert("There is something wrong!", err.message);
   }
 }
 
