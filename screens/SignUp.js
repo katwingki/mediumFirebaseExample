@@ -1,14 +1,5 @@
 import React, { useState } from "react";
-import {
-  View,
-  Text,
-  TextInput,
-  Button,
-  Alert,
-  ScrollView,
-  Keyboard,
-  StyleSheet
-} from "react-native";
+import { View, Text, TextInput, Alert, ScrollView, Keyboard ,StyleSheet, SafeAreaView} from "react-native";
 import { TouchableOpacity } from "react-native-gesture-handler";
 import { registration } from "../API/firebaseMethods";
 
@@ -25,10 +16,6 @@ export default function SignUp({ navigation }) {
     setEmail("");
     setPassword("");
     setConfirmPassword("");
-  };
-
-  const handlePressSignIn = () => {
-    navigation.navigate("SignIn");
   };
 
   const handlePress = () => {
@@ -56,51 +43,58 @@ export default function SignUp({ navigation }) {
   };
 
   return (
-    <View style={styles.container}>
-      <Text style={styles.text}>Create an account </Text>
+    <SafeAreaView>
+     <View style={styles.container}>
+       <Text style={styles.text}>Create an account </Text>
 
-      <ScrollView onBlur={Keyboard.dismiss}>
-        <TextInput
+       <ScrollView onBlur={Keyboard.dismiss}>
+          <TextInput
           style={styles.textInput}
           placeholder="First name*"
           value={firstName}
           onChangeText={(name) => setFirstName(name)}
-        />
-        <TextInput
+          />
+         <TextInput
           style={styles.textInput}
           placeholder="Last name"
           value={lastName}
           onChangeText={(name) => setLastName(name)}
-        />
+         />
 
-        <TextInput
+         <TextInput
           style={styles.textInput}
           placeholder="Enter your email*"
           value={email}
           onChangeText={(email) => setEmail(email)}
           keyboardType="email-address"
           autoCapitalize="none"
-        />
+         />
 
-        <TextInput
+          <TextInput
           style={styles.textInput}
           placeholder="Enter your password*"
           value={password}
           onChangeText={(password) => setPassword(password)}
           secureTextEntry={true}
-        />
-        <TextInput
+         />
+         <TextInput
           style={styles.textInput}
           placeholder="Retype your password to confirm*"
           value={confirmPassword}
           onChangeText={(password2) => setConfirmPassword(password2)}
           secureTextEntry={true}
-        />
-        <TouchableOpacity style={styles.button} onPress={handlePress}>
-          <Text style={styles.buttonText}>Sign up</Text>
-        </TouchableOpacity>
-      </ScrollView>
-    </View>
+          />
+          <TouchableOpacity style={styles.button} onPress={handlePress}>
+           <Text style={styles.buttonText}>Sign Up</Text>
+          </TouchableOpacity>
+
+          <Text style={styles.inlineText}>Already have an account?</Text>
+          <TouchableOpacity style={styles.button} onPress={() => navigation.navigate('Sign In')}>
+            <Text style={styles.buttonText}>Sign In</Text>
+          </TouchableOpacity>
+       </ScrollView>
+     </View>
+    </SafeAreaView>
   );
 }
 
@@ -112,28 +106,6 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
   },
-  text: {
-    textAlign: 'center',
-    fontSize: 25,
-    margin: "5%",
-    fontWeight: 'bold',
-    color: '#2E6194',
-
-  },
-  textInput: {
-    width: 300,
-    fontSize:18,
-    borderWidth: 1,
-    borderColor:'#a4eddf',
-    padding: 10,
-    margin: 5,
-  },
-  buttonText: {
-    fontSize:20,
-    color: 'white',
-    fontWeight: 'bold',
-    textAlign: 'center',
-  },
   button: {
     width: 200,
     padding: 5,
@@ -143,5 +115,34 @@ const styles = StyleSheet.create({
     borderRadius: 15,
     alignSelf: 'center',
     margin: "5%",
+  },
+  buttonText: {
+    fontSize:20,
+    color: 'white',
+    fontWeight: 'bold',
+    textAlign: 'center',
+  },
+  inlineText: {
+    fontSize: 20,
+    fontWeight: 'bold',
+    color: 'navy',
+    textAlign: 'center',
+    marginTop: '5%',
+  },
+  text: {
+    textAlign: 'center',
+    fontSize: 25,
+    margin: "5%",
+    marginTop:"15%",
+    fontWeight: 'bold',
+    color: '#2E6194',
+  },
+  textInput: {
+    width: 300,
+    fontSize:18,
+    borderWidth: 1,
+    borderColor:'#a4eddf',
+    padding: 10,
+    margin: 5,
   },
 });

@@ -5,19 +5,18 @@ import { TouchableOpacity } from 'react-native-gesture-handler';
 export default function WelcomeScreen ({navigation}) {
   return (
      <ImageBackground
-    style={styles.background}
-    source={require('../assets/background.jpg')}
-  >
-    <View style={styles.titleContainer}>
-      <Text style={styles.title}>Welcome to Firebase/Firestore Example</Text>
-    </View>
-    <TouchableOpacity style={styles.button} onPress={() => navigation.navigate('Sign Up')} >
-       <Text style={styles.buttonText}>Sign Up</Text>
-    </TouchableOpacity>
-    <Text style={styles.inlineText}>Already have an account?</Text>
-    <TouchableOpacity style={styles.button} onPress={() => navigation.navigate('Sign In')}>
-       <Text style={styles.buttonText}>Sign In</Text>
-    </TouchableOpacity>
+      style={styles.background}
+      source={require('../assets/background.jpg')}>
+      <View style={styles.titleContainer}>
+        <Text style={styles.title}>Welcome to Firebase/Firestore Example</Text>
+      </View>
+      <TouchableOpacity style={styles.button} onPress={() => navigation.navigate('Sign Up')} >
+        <Text style={styles.buttonText}>Sign Up</Text>
+       </TouchableOpacity>
+      <Text style={styles.inlineText}>Already have an account?</Text>
+      <TouchableOpacity style={styles.button} onPress={() => navigation.navigate('Sign In')}>
+        <Text style={styles.buttonText}>Sign In</Text>
+      </TouchableOpacity>
      </ImageBackground>
   )
 }
