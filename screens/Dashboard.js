@@ -53,6 +53,7 @@ const styles = StyleSheet.create({
     alignSelf: 'center',
   },
   buttonText: {
+    fontSize:20,
     color: 'white',
     fontWeight: 'bold',
     textAlign: 'center',
@@ -66,7 +67,8 @@ const styles = StyleSheet.create({
   },
   text: {
     textAlign: 'center',
-    fontSize: 18,
+    fontSize: 20,
+    fontStyle: 'italic',
     marginTop: '2%',
     marginBottom: '10%',
     fontWeight: 'bold',
@@ -74,7 +76,7 @@ const styles = StyleSheet.create({
   },
   titleText: {
     textAlign: 'center',
-    fontSize: 25,
+    fontSize: 30,
     fontWeight: 'bold',
     color: '#2E6194',
   },
