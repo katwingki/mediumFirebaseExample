@@ -1,43 +1,43 @@
-import React, { useState } from "react";
-import { View, Text, TextInput, Alert, ScrollView, Keyboard ,StyleSheet, SafeAreaView} from "react-native";
-import { TouchableOpacity } from "react-native-gesture-handler";
-import { registration } from "../API/firebaseMethods";
+import React, { useState } from 'react';
+import { View, Text, TextInput, Alert, ScrollView, Keyboard ,StyleSheet, SafeAreaView} from 'react-native';
+import { TouchableOpacity } from 'react-native-gesture-handler';
+import { registration } from '../API/firebaseMethods';
 
 export default function SignUp({ navigation }) {
-  const [firstName, setFirstName] = useState("");
-  const [lastName, setLastName] = useState("");
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const [confirmPassword, setConfirmPassword] = useState("");
+  const [firstName, setFirstName] = useState('');
+  const [lastName, setLastName] = useState('');
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const [confirmPassword, setConfirmPassword] = useState('');
 
   const emptyState = () => {
-    setFirstName("");
-    setLastName("");
-    setEmail("");
-    setPassword("");
-    setConfirmPassword("");
+    setFirstName('');
+    setLastName('');
+    setEmail('');
+    setPassword('');
+    setConfirmPassword('');
   };
 
   const handlePress = () => {
     if (!firstName) {
-      Alert.alert("First name is required");
+      Alert.alert('First name is required');
     } else if (!email) {
-      Alert.alert("Email field is required.");
+      Alert.alert('Email field is required.');
     } else if (!password) {
-      Alert.alert("Password field is required.");
+      Alert.alert('Password field is required.');
     } else if (!confirmPassword) {
-      setPassword("");
-      Alert.alert("Confirm password field is required.");
+      setPassword('');
+      Alert.alert('Confirm password field is required.');
     } else if (password !== confirmPassword) {
-      Alert.alert("Password does not match!");
+      Alert.alert('Password does not match!');
     } else {
-      const userUID = registration(
+      registration(
         email,
         password,
         lastName,
         firstName,
       );
-      navigation.navigate("Dashboard", userUID);
+      navigation.navigate('Loading');
       emptyState();
     }
   };
@@ -114,7 +114,7 @@ const styles = StyleSheet.create({
     borderColor: 'white',
     borderRadius: 15,
     alignSelf: 'center',
-    margin: "5%",
+    margin: '5%',
   },
   buttonText: {
     fontSize:20,
@@ -132,8 +132,8 @@ const styles = StyleSheet.create({
   text: {
     textAlign: 'center',
     fontSize: 25,
-    margin: "5%",
-    marginTop:"15%",
+    margin: '5%',
+    marginTop:'15%',
     fontWeight: 'bold',
     color: '#2E6194',
   },
