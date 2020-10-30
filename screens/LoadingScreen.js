@@ -7,9 +7,9 @@ export default function LoadingScreen({ navigation }) {
      () => {
       firebase.auth().onAuthStateChanged((user) => {
         if (user) {
-          navigation.navigate('Dashboard');
+          navigation.replace('Dashboard');
         } else {
-          navigation.navigate('Home');
+          navigation.replace('Home');
         }
       });
     }

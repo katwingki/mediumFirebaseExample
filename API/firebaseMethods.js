@@ -31,5 +31,9 @@ export async function signIn(email, password) {
 }
 
 export async function loggingOut() {
-  await firebase.auth().signOut();
+  try {
+    await firebase.auth().signOut();
+  } catch (err) {
+    Alert.alert('There is something wrong!', err.message);
+  }
 }

@@ -10,17 +10,21 @@ export default function Dashboard({ navigation }) {
 
   useEffect(() => {
     async function getUserInfo(){
-      let doc = await firebase
-      .firestore()
-      .collection('users')
-      .doc(currentUserUID)
-      .get();
+      try {
+        let doc = await firebase
+          .firestore()
+          .collection('users')
+          .doc(currentUserUID)
+          .get();
 
-      if (!doc.exists){
-        Alert.alert('No user data found!')
-      } else {
-        let dataObj = doc.data();
-        setFirstName(dataObj.firstName)
+        if (!doc.exists){
+          Alert.alert('No user data found!')
+        } else {
+          let dataObj = doc.data();
+          setFirstName(dataObj.firstName)
+        }
+      } catch (err){
+      Alert.alert('There is an error.', err.message)
       }
     }
     getUserInfo();
@@ -28,7 +32,7 @@ export default function Dashboard({ navigation }) {
 
   const handlePress = () => {
     loggingOut();
-    navigation.navigate('Home');
+    navigation.replace('Home');
   };
 
   return (

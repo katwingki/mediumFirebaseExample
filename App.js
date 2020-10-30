@@ -12,8 +12,8 @@ import Dashboard from './screens/Dashboard';
 const Stack = createStackNavigator();
 
 export default function App() {
-     if (!firebase.apps.length) {
-    console.log('connectedjajaja ')
+  if (!firebase.apps.length) {
+    console.log('Connected with Firebase')
     firebase.initializeApp(apiKeys.firebaseConfig);
   }
 
